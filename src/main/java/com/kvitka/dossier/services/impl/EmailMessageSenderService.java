@@ -50,51 +50,65 @@ public class EmailMessageSenderService {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Finishing registration",
                     emailMessage.getApplicationId()));
             simpleMailMessage.setText("""
-                    Your application has pre-approved
+                    Your application has pre-approved.
 
-                    Please finish Your registration by sending remaining personal data""");
+                    Please finish Your registration by sending remaining personal data:
+                             
+                    http://localhost:7000/swagger-ui/index.html#/api-gateway-controller/calculate""");
         });
 
         textAndSubjectTemplates.put(Theme.CREATE_DOCUMENTS, (simpleMailMessage, emailMessage) -> {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Creating documents",
                     emailMessage.getApplicationId()));
             simpleMailMessage.setText("""
-                    Credit has calculated and Your application has approved
+                    Credit has calculated and Your application has approved.
                                         
-                    Please confirm Your request for creation of documents""");
+                    Please confirm Your request for creation of documents:
+                                        
+                    http://localhost:7000/swagger-ui/index.html#/api-gateway-controller/documentSend""");
         });
 
         textAndSubjectTemplates.put(Theme.SEND_DOCUMENTS, (simpleMailMessage, emailMessage) -> {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Signing documents",
                     emailMessage.getApplicationId()));
             simpleMailMessage.setText("""
-                    Documents for Your application has created
+                    Documents for Your application has created.
                                         
-                    Please confirm Your agreement with the term of credit by signing the documents""");
+                    Please confirm Your agreement with the term of credit by signing the documents:
+                                        
+                    http://localhost:7000/swagger-ui/index.html#/api-gateway-controller/documentSign""");
         });
 
         textAndSubjectTemplates.put(Theme.SEND_SES, (simpleMailMessage, emailMessage) -> {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Finishing documents signing",
                     emailMessage.getApplicationId()));
+            String info = emailMessage.getInfo();
             simpleMailMessage.setText(String.format("""
-                    To finish documents signing You need to verify SES code
+                    To finish documents signing You need to verify SES code.
 
                     Your SES code: %s
 
-                    Please verify Your SES code to finish documents signing""", emailMessage.getInfo()));
+                    Please verify Your SES code to finish documents signing:
+                                        
+                    http://localhost:7000/swagger-ui/index.html#/api-gateway-controller/documentCode""", info));
         });
 
         textAndSubjectTemplates.put(Theme.CREDIT_ISSUED, (simpleMailMessage, emailMessage) -> {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Credit issued",
                     emailMessage.getApplicationId()));
-            simpleMailMessage.setText("Credit issued successfully. Thank You for choosing us");
+            simpleMailMessage.setText("""
+                    Credit issued successfully. Thank You for choosing us!""");
         });
 
         textAndSubjectTemplates.put(Theme.APPLICATION_DENIED, (simpleMailMessage, emailMessage) -> {
             simpleMailMessage.setSubject(String.format("[Loan Application #%d] Application denied",
                     emailMessage.getApplicationId()));
             simpleMailMessage.setText("""
-                    Your application has denied""");
+                    Your application has denied.
+                                        
+                    Here You can issue a new loan application:
+                                        
+                    http://localhost:7000/swagger-ui/index.html#/api-gateway-controller/application""");
         });
     }
 }
