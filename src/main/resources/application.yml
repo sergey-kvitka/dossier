@@ -1,2 +1,23 @@
 server:
   port: 7500
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kvitka.credit.conevyor@gmail.com # опечатался при регистрации :/
+    password: vbmsifjjhqwudplu
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+rest:
+  deal:
+    url: http://localhost:8020

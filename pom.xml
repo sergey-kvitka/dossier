@@ -39,6 +39,18 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency> <!-- * swagger -->
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+        <dependency> <!-- * swagger -->
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
         <dependency> <!-- * kafka -->
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
@@ -50,15 +62,9 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency> <!-- * swagger -->
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-        <dependency> <!-- * liquibase -->
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
+        <dependency> <!-- * SMTP -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
     </dependencies>
 
